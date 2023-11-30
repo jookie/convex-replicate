@@ -52,15 +52,6 @@ To learn more about Convex, check out the following resources:
 - [Docs](https://docs.convex.dev) has details on the platform and APIs.
 - [Stack](https://stack.convex.dev) has tips and best practices.
 
-## Deploy the frontend on Vercel or Netlify
-
-The easiest way to deploy your Next.js frontend is to use the [Vercel Platform](https://vercel.com/new?filter=next.js) from the creators of Next.js, or [Netlify](https://netlify.com).
-
-See the [Convex docs on production deployments](https://docs.convex.dev/production/hosting/)
-for details on deploying a production backend.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
 ## 1: The reactor
 In this section, you'll explore the reactor through the Convex Dashboard to get familiar with:
 
@@ -98,7 +89,12 @@ export const list = query({
 
 Hosting your Convex app on Vercel allows you to automatically re-deploy both your backend and your frontend whenever you push your code.
 
-## Deploying to Vercel
+## Deploy the frontend on Vercel
+
+The easiest way to deploy your Next.js frontend is to use the [Vercel Platform](https://vercel.com/new?filter=next.js).
+
+See the [Convex docs on production deployments](https://docs.convex.dev/production/hosting/)
+for details on deploying a production backend.
 
 This guide assumes you already have a working React app with Convex. If not follow the Convex React Quickstart first. Then:
 
