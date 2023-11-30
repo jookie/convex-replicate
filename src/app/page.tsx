@@ -34,7 +34,9 @@ export default function Home() {
           onSubmit={handleSubmit(async (formData) => {
             if (!canvasRef.current) return;
             const image = await canvasRef.current.exportImage("jpeg");
+            
             await saveSketchMutation({ ...formData, image });
+            console.log("image", image)
           })}
         >
           <Label htmlFor="prompt">Prompt</Label>

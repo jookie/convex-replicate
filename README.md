@@ -1,10 +1,21 @@
 # Use Convex with Replicate to create images from doodles
 
 Stack:
+
 - [Convex](https://convex.dev)
 - [Replicate](https://replicate.com/)
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+
+Tutorials:
+
+- [A Tour of Convex](https://docs.convex.dev/get-started)
+- [Convex Templates](https://www.convex.dev/templates)
+- [Using Convex with Vercel](https://docs.convex.dev/production/hosting/vercel)
+- []()
+- []()
+- []()
+- []()
 
 ## Getting Started
 
@@ -49,3 +60,60 @@ See the [Convex docs on production deployments](https://docs.convex.dev/producti
 for details on deploying a production backend.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## 1: The reactor
+In this section, you'll explore the reactor through the Convex Dashboard to get familiar with:
+
+Tables that store your data as relational Documents
+Query functions that read from your tables reactively
+Mutation functions that write to your tables
+Screenshot of a chat app
+
+The Convex Dashboard is your hub for viewing and managing your Convex projects. From any Convex app, you can always quickly jump into the dashboard for that particular backend with the convex command. Let's do that now for our new chat app:
+
+'''
+npx convex dashboard
+'''
+
+## Convex functions
+In our chat app's messages module, we have two functions you can find in convex/messages.ts:
+
+messages:list is a query function, which reads data from your Convex tables.
+messages:send is a mutation function, which writes data into your Convex tables.
+Let's dive into query functions first.
+
+## Reading data with query functions
+
+messages:list is a query function that retrieves up to 100 of the most recent documents in the messages table using the ctx.db object provided by Convex:
+
+export const list = query({
+  args: {},
+  handler: async (ctx) => {
+    // Grab the most recent messages.
+    const messages = await ctx.db.query("messages").order("desc").take(100);
+    // Reverse the list so that it's in a chronological order.
+    return messages.reverse();
+  },
+});
+
+Hosting your Convex app on Vercel allows you to automatically re-deploy both your backend and your frontend whenever you push your code.
+
+## Deploying to Vercel
+
+This guide assumes you already have a working React app with Convex. If not follow the Convex React Quickstart first. Then:
+
+### Create a Vercel account
+
+If you haven't done so, create a Vercel account. This is free for small projects and should take less than a minute to set up.
+
+### Link your project on Vercel
+
+Create a Vercel project at https://vercel.com/new and link it to the source code repository for your project on GitHub or other Git platform.
+
+Vercel import project
+
+### Override the Build command
+
+Override the "Build command" to be npx convex deploy --cmd 'npm run build'.
+
+If your project lives in a subdirectory of your repository you'll also need to change Root Directory above accordingly.
